@@ -1,6 +1,7 @@
 package com.example.ashugupta.smartindiahack;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,7 +24,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -149,9 +149,24 @@ public class touchservice extends Service implements View.OnTouchListener {
 
         if (gestureDetector.onTouchEvent(event)) {
 
-            Log.d("Test ", "touch");
-            this.stopSelf();
-            Toast.makeText(this, "Any action can be performed now", Toast.LENGTH_SHORT).show();
+//            Log.d("Test ", "touch");
+//            Intent i=new Intent(this,Main2Activity.class);
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(i);
+
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setComponent(new ComponentName("com.example.ashugupta.camerapreviewexample","com.example.ashugupta.camerapreviewexample.MainActivity"));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+//            Intent intent = new Intent(Intent.ACTION_MAIN);
+//            intent.setComponent(ComponentName.unflattenFromString("com.example.ashugupta.camerapreviewexample/com.example.ashugupta.camerapreviewexample.MainActivity"));
+//            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+      this.stopSelf();
+//            Toast.makeText(this, "Any action can be performed now", Toast.LENGTH_SHORT).show();
             return true;
 
         }
